@@ -32,7 +32,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <native.image.annotations.version>0.9.2-SNAPSHOT</native.image.annotations.version>
+        <native.image.annotations.version>0.9.3</native.image.annotations.version>
 		<picocli.version>4.7.5</picocli.version>
         <graalvm.version>0.10.2</graalvm.version>
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
