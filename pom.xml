@@ -26,7 +26,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.bithatch</groupId>
     <artifactId>ninstall</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Ninstall - Parent Project</name>
     <packaging>pom</packaging>
     <properties>
