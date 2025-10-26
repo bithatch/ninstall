@@ -20,6 +20,7 @@
  */
 package uk.co.bithatch.ninstall.lib.installer;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -28,7 +29,9 @@ import java.io.UncheckedIOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import uk.co.bithatch.ninstall.lib.SetupAppToolkit;
@@ -56,6 +59,19 @@ public final class Agreement extends SetupPage {
         public Builder withContent(String content) {
             this.content = content;
             return this;
+        }
+
+        public Builder withContent(File path) {
+        	return withContent(path.toPath());
+        }
+        
+        public Builder withContent(Path path) {
+        	try(var in = Files.newBufferedReader(path)) {
+        		return withContent(in);
+        	}
+        	catch(IOException ioe) {
+        		throw new UncheckedIOException(ioe);
+        	}
         }
 
         public Builder withContent(URL content) {
