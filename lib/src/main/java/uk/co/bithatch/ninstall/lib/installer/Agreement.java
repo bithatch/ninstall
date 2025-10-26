@@ -20,20 +20,14 @@
  */
 package uk.co.bithatch.ninstall.lib.installer;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UncheckedIOException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 
+import uk.co.bithatch.ninstall.lib.Resource;
 import uk.co.bithatch.ninstall.lib.SetupAppToolkit;
 import uk.co.bithatch.ninstall.lib.SetupPage;
 
@@ -48,43 +42,14 @@ public final class Agreement extends SetupPage {
 
     public final static class Builder extends SetupPage.Builder<Agreement, Builder> {
 
-        private String content;
-        private Charset encoding = Charset.defaultCharset();
-
-        public Builder withEncoding(Charset encoding) {
-            this.encoding = encoding;
-            return this;
-        }
+		private Resource resource;
 
         public Builder withContent(String content) {
-            this.content = content;
-            return this;
-        }
-
-        public Builder withContent(File path) {
-        	return withContent(path.toPath());
-        }
-        
-        public Builder withContent(Path path) {
-        	try(var in = Files.newBufferedReader(path)) {
-        		return withContent(in);
-        	}
-        	catch(IOException ioe) {
-        		throw new UncheckedIOException(ioe);
-        	}
+            return withResource(Resource.ofContent(content));
         }
 
         public Builder withContent(URL content) {
-            try {
-                var in = content.openStream();
-                if (in == null)
-                    throw new NoSuchFileException(content.toURI().toString());
-                return withContent(new InputStreamReader(in, encoding));
-            } catch (IOException ioe) {
-                throw new UncheckedIOException(ioe);
-            } catch (URISyntaxException e) {
-                throw new IllegalArgumentException(e);
-            }
+            return withResource(Resource.ofContent(content));
         }
 
         public Builder withContent(Reader content) {
@@ -96,6 +61,11 @@ public final class Agreement extends SetupPage {
                 throw new UncheckedIOException(ioe);
             }
         }
+        
+        public Builder withResource(Resource resource) {
+        	this.resource = resource;
+        	return this;
+        }
 
         @Override
         public Agreement build() {
@@ -103,26 +73,20 @@ public final class Agreement extends SetupPage {
         }
     }
 
-    private final String content;
-    private final Charset encoding;
+    private final Resource resource;
 
     private Agreement(Builder bldr) {
         super(bldr);
-        if(bldr.content == null)
-            throw new IllegalArgumentException("No content.");
-        this.content = bldr.content;
-        this.encoding = bldr.encoding;
+        if(bldr.resource == null)
+            throw new IllegalArgumentException("No resource.");
+        this.resource = bldr.resource;
     }
 
-    public String content() {
-        return content;
+    public Resource resource() {
+        return resource;
     }
 
-    public Charset encoding() {
-        return encoding;
-    }
-
-    @Override
+	@Override
     public Class<?> uiClass(SetupAppToolkit<?> tk) {
         return AgreementUI.class;
     }

@@ -71,7 +71,7 @@ public final class Shortcut extends SystemLauncher {
         }
                 
         public Builder withIcons(Locale locale, String... icon) {
-            return withIcons(locale, Arrays.asList(icon).stream().map(Resource::ofBundled).toList().toArray(new Resource[0]));
+            return withIcons(locale, Arrays.asList(icon).stream().map(Resource::ofBundle).toList().toArray(new Resource[0]));
         }
         
         public Builder withIcons(Locale locale, Resource... icon) {

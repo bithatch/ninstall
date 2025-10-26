@@ -60,7 +60,7 @@ public class SWTAgreement extends AbstractSWTInstallUI<Agreement> implements Agr
        var styledTextLayoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
        styledTextLayoutData.horizontalSpan = 2;
        styledText.setLayoutData(styledTextLayoutData);
-       styledText.setText(model().content());
+       styledText.setText(model().resource().asString());
        
        agree = new Button(parent, SWT.RADIO);
        agree.addSelectionListener(SelectionListener.widgetSelectedAdapter(evt -> setAvailable()));

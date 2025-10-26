@@ -68,7 +68,7 @@ public class ConsoleAgreement extends AbstractConsoleInstallUI<Agreement> implem
 	    
 	                    @Override
 	                    public InputStream read() throws IOException {
-	                        return new ByteArrayInputStream(model.content().getBytes(model.encoding()));
+	                    	return model.resource().in();
 	                    }
 	    
 	                    @Override
@@ -86,7 +86,7 @@ public class ConsoleAgreement extends AbstractConsoleInstallUI<Agreement> implem
 	            terminal.puts(InfoCmp.Capability.clear_screen);
             }
             else {
-            	terminal.writer().println(model.content());
+            	terminal.writer().println(model.resource().asString());
             }
             
             printHeader(terminal);

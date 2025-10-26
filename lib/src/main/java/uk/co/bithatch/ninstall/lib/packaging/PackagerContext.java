@@ -28,6 +28,7 @@ import uk.co.bithatch.ninstall.lib.BuildContext;
 import uk.co.bithatch.ninstall.lib.Machine;
 import uk.co.bithatch.ninstall.lib.Manifest;
 import uk.co.bithatch.ninstall.lib.Progress;
+import uk.co.bithatch.ninstall.lib.Resource;
 
 public interface PackagerContext {
     Map<AttributeKey, Object> attributes();
@@ -43,4 +44,6 @@ public interface PackagerContext {
     Path output();
 
     boolean verbose();
+
+	void resource(Resource resource);
 }

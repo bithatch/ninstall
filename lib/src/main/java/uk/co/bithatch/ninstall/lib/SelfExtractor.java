@@ -78,7 +78,7 @@ public class SelfExtractor {
 				if (args[i].equals("--no-cleanup")) {
 					cleanup = false;
 				} else if (args[i].equals("--no-exec")) {
-					cleanup = false;
+					exec = false;
 				} else if (args[i].equals("--verbose")) {
 					verbose = true;
 				} else if (args[i].equals("--quiet")) {

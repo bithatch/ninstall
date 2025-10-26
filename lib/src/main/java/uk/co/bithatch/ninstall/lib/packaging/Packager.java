@@ -43,6 +43,7 @@ import uk.co.bithatch.ninstall.lib.Machine;
 import uk.co.bithatch.ninstall.lib.Manifest;
 import uk.co.bithatch.ninstall.lib.OutputFileset;
 import uk.co.bithatch.ninstall.lib.Progress;
+import uk.co.bithatch.ninstall.lib.Resource;
 
 public abstract class Packager {
     
@@ -153,7 +154,7 @@ public abstract class Packager {
             IO.delete(pkgFile);
         }
         
-        return makeImpl(new PackagerContext() {
+        PackagerContext pkgCtx = new PackagerContext() {
             
             private final Map<AttributeKey, Object> attrs = new HashMap<>();
 
@@ -191,7 +192,39 @@ public abstract class Packager {
             public Map<AttributeKey, Object> attributes() {
                 return attrs;
             }
-        });
+
+			@Override
+			public void resource(Resource resource) {
+            	var  dir = output();
+            	var file = dir.resolve(resource.name());
+	            progress().info(" +{0}", resource.name());
+	            IO.ioCall(() -> {
+	            	Files.createDirectories(file.getParent());
+	            	try(var out = Files.newOutputStream(file)) {
+	            		resource.in().transferTo(out);
+	            	}
+	            	return null;
+	            });
+			}
+        };
+        
+        try {
+        	packagerContext.set(pkgCtx);
+        	return makeImpl(pkgCtx);
+        }
+        finally {
+        	packagerContext.remove();
+        }
+    }
+    
+    private static ThreadLocal<PackagerContext> packagerContext = new ThreadLocal<>();
+    
+    public static Optional<PackagerContext> packagerContext() {
+    	return Optional.ofNullable(packagerContext.get());
+    }
+    
+    public static boolean isPackaging() {
+    	return packagerContext.get() != null;
     }
     
     public abstract String extension();
