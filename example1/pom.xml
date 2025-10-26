@@ -89,4 +89,5 @@
             </dependencies>
         </profile>
     </profiles>
+   <description>Examples of Ninstall installer toolkit.</description>
 </project>

@@ -135,4 +135,5 @@
             </dependencies>
         </profile>
     </profiles>
+    <description>SWT toolkit implementation for Ninstall installer toolkit.</description>
 </project>
