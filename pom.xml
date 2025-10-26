@@ -1,0 +1,272 @@
+<!--
+
+    Copyright © 2020 Bithatch (brett@bithatch.co.uk)
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this
+    software and associated documentation files (the “Software”), to deal in the Software
+    without restriction, including without limitation the rights to use, copy, modify,
+    merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to the following
+    conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies
+    or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+    PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>uk.co.bithatch</groupId>
+    <artifactId>ninstall</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Ninstall - Parent Project</name>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <native.image.annotations.version>0.9.2-SNAPSHOT</native.image.annotations.version>
+		<picocli.version>4.7.5</picocli.version>
+        <graalvm.version>0.10.2</graalvm.version>
+        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
+    </properties>
+	<developers>
+		<developer>
+			<id>brett</id>
+			<email>brett@bithatch.co.uk</email>
+		</developer>
+	</developers>
+	<organization>
+		<name>Bithatch</name>
+		<url>https://bithatch.co.uk</url>
+	</organization>
+	<inceptionYear>2020</inceptionYear>
+	<url>https://github.com/bithatch/ninstall</url>
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://mit-license.org/</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/bithatch/ninstall</url>
+		<connection>scm:git:https://github.com/bithatch/ninstall.git</connection>
+	</scm>
+    <dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>com.sshtools</groupId>
+	            <artifactId>liftlib</artifactId>
+	            <version>0.9.14</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>io.github.azagniotov</groupId>
+	            <artifactId>ant-style-path-matcher</artifactId>
+	            <version>1.0.0</version> 
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.bcel</groupId>
+	            <artifactId>bcel</artifactId>
+	            <version>6.7.0</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>info.picocli</groupId>
+	            <artifactId>picocli</artifactId>
+	            <version>${picocli.version}</version>
+	        </dependency>
+			<dependency>
+				<groupId>com.sshtools</groupId>
+				<artifactId>tinytemplate</artifactId>
+				<version>0.9.3</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-compress</artifactId>
+			    <version>1.27.1</version>
+			</dependency>
+	    </dependencies>
+	</dependencyManagement>
+    <build>
+        <plugins>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>javadoc-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <configuration>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                    <publishingServerId>ossrh-bithatch</publishingServerId>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+	        <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+    				<version>3.6.3</version>
+                    <configuration>
+       					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                        <encoding>UTF-8</encoding>
+                        <detectJavaApiLink>false</detectJavaApiLink>
+                        <doclint>none</doclint>
+                        <sourcepath>src/main/java</sourcepath>
+                        <includeDependencySources>false</includeDependencySources>
+                        <dependencySourceIncludes>
+                            <dependencySourceInclude>uk.co.bithatch:*</dependencySourceInclude>
+                        </dependencySourceIncludes>
+                    </configuration>
+                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.12.1</version>
+					<configuration>
+						<release>22</release>
+						<testRelease>22</testRelease>
+	                    <annotationProcessorPaths>
+	                        <path>
+	                            <groupId>uk.co.bithatch</groupId>
+	                            <artifactId>native-image-annotations</artifactId>
+	                            <version>${native.image.annotations.version}</version>
+	                        </path>
+	                        <path>
+						        <groupId>info.picocli</groupId>
+						        <artifactId>picocli-codegen</artifactId>
+						        <version>${picocli.version}</version>
+						      </path>
+	                    </annotationProcessorPaths>
+	                    <compilerArgs>
+	                        <arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+	                    </compilerArgs>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>4.6</version>
+					<configuration>
+						<header>src/templates/MIT.txt</header>
+						<properties>
+							<owner>Bithatch</owner>
+							<email>brett@bithatch.co.uk</email>
+						</properties>
+						<excludes>
+							<exclude>**/README.md</exclude>
+							<exclude>**/*LICENSE*</exclude>
+							<exclude>src/test/resources/**</exclude>
+							<exclude>src/main/resources/**</exclude>
+						</excludes>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>check</goal>
+								<goal>format</goal>
+								<goal>remove</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${central-publishing-maven-plugin.version}</version> 
+                    <extensions>true</extensions>
+	                <configuration>
+	                    <autoPublish>true</autoPublish>
+	                    <waitUntil>published</waitUntil>
+	                    <publishingServerId>ossrh-bithatch</publishingServerId>
+	                </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.2.7</version>
+                </plugin>       
+	        </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>native-image</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${graalvm.version}</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                            <execution>
+                                <id>test-native</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <metadataRepository>
+                                <enabled>true</enabled>
+                            </metadataRepository>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <modules>
+    	<module>lib</module>
+    	<module>console</module>
+    	<module>swt</module>
+    	<module>linux</module>
+    	<module>example1</module>
+    </modules>
+</project>

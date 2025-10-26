@@ -1,0 +1,14 @@
+[
+{
+  "name":"org.eclipse.swt.widgets.Display"
+},
+{
+  "name":"java.lang.String"
+},
+{
+  "name":"org.osgi.service.cm.ConfigurationAdmin"
+},
+{
+  "name":"org.osgi.service.cm.ConfigurationEvent"
+}
+]

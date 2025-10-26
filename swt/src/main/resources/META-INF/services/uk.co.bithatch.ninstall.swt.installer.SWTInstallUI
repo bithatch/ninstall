@@ -1,0 +1,6 @@
+uk.co.bithatch.ninstall.swt.installer.SWTInstallWelcome
+uk.co.bithatch.ninstall.swt.installer.SWTAgreement
+uk.co.bithatch.ninstall.swt.installer.SWTDestination
+uk.co.bithatch.ninstall.swt.installer.SWTInstall
+uk.co.bithatch.ninstall.swt.installer.SWTInstallFinished
+uk.co.bithatch.ninstall.swt.installer.SWTInstallFailed

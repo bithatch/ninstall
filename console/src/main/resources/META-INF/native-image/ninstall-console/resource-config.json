@@ -1,0 +1,8 @@
+{
+  "resources":{
+  "includes":[
+    {
+      "pattern":"uk/co/bithatch/ninstall/console/.*"
+    }
+  ]}
+}

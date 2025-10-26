@@ -1,0 +1,5 @@
+uk.co.bithatch.ninstall.console.installer.ConsoleInstallWelcome
+uk.co.bithatch.ninstall.console.installer.ConsoleAgreement
+uk.co.bithatch.ninstall.console.installer.ConsoleDestination
+uk.co.bithatch.ninstall.console.installer.ConsoleInstall
+uk.co.bithatch.ninstall.console.installer.ConsoleInstallFinished

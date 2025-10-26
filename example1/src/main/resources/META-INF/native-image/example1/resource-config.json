@@ -1,0 +1,68 @@
+{
+  "resources":{
+  "includes":[{
+    "pattern":"\\QMETA-INF/services/org/jline/terminal/provider/exec\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org/jline/terminal/provider/jansi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org/jline/terminal/provider/jna\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org/jline/terminal/provider/jni\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/uk.co.bithatch.ninstall.lib.installer.Toolkit\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/uk.co.bithatch.ninstall.lib.installer.swt.SWTUI\\E"
+  }, {
+    "pattern":"\\Qbanner.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo128px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo16px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo24px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo256px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo32px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo48px.png\\E"
+  }, {
+    "pattern":"\\Qinstall-logo64px.png\\E"
+  }, {
+    "pattern":"\\Qlogo128px.png\\E"
+  }, {
+    "pattern":"\\Qlogo16px.png\\E"
+  }, {
+    "pattern":"\\Qlogo24px.png\\E"
+  }, {
+    "pattern":"\\Qlogo256px.png\\E"
+  }, {
+    "pattern":"\\Qlogo32px.png\\E"
+  }, {
+    "pattern":"\\Qlogo48px.png\\E"
+  }, {
+    "pattern":"\\Qlogo64px.png\\E"
+  }, {
+    "pattern":"\\Qlicenses/APACHE-2.txt\\E"
+  }, {
+    "pattern":"\\Qorg/eclipse/swt/internal/gtk/swt_functional_gtk_3_20.css\\E"
+  }, {
+    "pattern":"\\Qorg/eclipse/swt/internal/gtk/swt_theming_fixes_gtk_3_20.css\\E"
+  }, {
+    "pattern":"\\Qorg/eclipse/swt/internal/gtk/swt_theming_fixes_gtk_3_24_5.css\\E"
+  }, {
+    "pattern":"\\Qorg/jline/utils/capabilities.txt\\E"
+  }, {
+    "pattern":"\\Qorg/jline/utils/dumb.caps\\E"
+  }, {
+    "pattern":"licenses/.*"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt67b/nfkc.nrm\\E"
+  }, {
+    "pattern":"java.xml:\\Qcom/sun/org/apache/xml/internal/serializer/Encodings.properties\\E"
+  }]},
+  "bundles":[{
+    "name":"com.sun.org.apache.xml.internal.serializer.XMLEntities",
+    "locales":[""]
+  }]
+}
